@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Carian : Skim Perkhidmatan</title>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css" />
+<script>
+$(function() {
+var names = [ "Pegawai Teknologi Maklumat", "Pegawai Perubatan", "Pembantu Tadbir" ];
+var accentMap = {
+"á": "a",
+"ö": "o"
+};
+
+<!--
+Ni simple yet basic punya autocomplete
+jQuery(document).ready(function(){
+			$('#zipsearch').autocomplete({source:'suggest_zip.php', minLength:2});
+		}); 
+-->
+
+
+var normalize = function( term ) {
+var ret = "";
+for ( var i = 0; i < term.length; i++ ) {
+ret += accentMap[ term.charAt(i) ] || term.charAt(i);
+}
+return ret;
+};
+$( "#developer" ).autocomplete({source: function( request, response) {
+var matcher = new RegExp( $.ui.autocomplete.escapeRegex( request.term ), "i" );
+response( $.grep( names, function( value ) {
+value = value.label || value.value || value;
+return matcher.test( value ) || matcher.test( normalize( value ) );
+}) );
+}
+});
+});
+</script>
+</head>
+<body>
+<div class="ui-widget">
+<form>
+<label for="developer">Skim Perkhidmatan: </label>
+<input id="developer" />
+</form>
+</div>
+<h2>Sila taip nama skim</h2>
+</body>
+</html>
+
