@@ -19,7 +19,19 @@ if ( $rs && mysql_num_rows($rs) )
             'value' => $row['skimperkhidmatan']
         );
     }
-}
-
 echo json_encode($data);
 flush();
+
+echo "<table border='1'>
+<tr>
+<th>Jenis Agensi</th>
+<th>Nama Kementerian</th>
+<th>Nama Bekalan</th>
+<th>Skim Perkhidmatan</th>
+<th>Gred</th>
+<th>Perjawatan</th>
+</tr>";
+
+
+}
+
