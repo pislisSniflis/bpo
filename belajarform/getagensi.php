@@ -1,5 +1,5 @@
 <?php 
-$q=$_GET["q"];
+$q=$_GET["jenisagensi"];
 
 $con = mysql_connect('localhost', 'root', 'admin');
 if (!$con)
@@ -11,7 +11,7 @@ mysql_select_db("ajax_demo", $con);
 
 $sql="select jenisagensi, namakementerian, namabekalan, skimperkhidmatan, gredjawatan, sum(perjawatan) as jumlah
 from mac2013 inner join jenis_agensi on mac2013.jenisagensi = jenis_agensi.jenis_singkatan
-WHERE id = '".$q."' group by jenisagensi, namakementerian, namabekalan, skimperkhidmatan";
+WHERE jenisagensi = '$q' group by jenisagensi, namakementerian, namabekalan, skimperkhidmatan";
 
 $result = mysql_query($sql);
 
